@@ -1,0 +1,32 @@
+import qrcode
+
+
+def generate_qr_code(data, filename):
+    qr = qrcode.QRCode(
+        version=1,
+        box_size=15,
+        border=6
+    )
+
+    qr.add_data(data)
+    qr.make(fit=True)
+
+    image = qr.make_image(
+        fill_color="black",
+        back_color="white"
+    )
+
+    image.save(filename)
+
+
+def main():
+    data = input("Enter a text or URL to generate QR Code: ").strip()
+    filename = input("Enter the filename (e.g., qr_code.png): ").strip()
+
+    generate_qr_code(data, filename)
+
+    print(f"QR Code saved as {filename}")
+
+
+if __name__ == "__main__":
+    main()
